@@ -5,9 +5,14 @@
         <article class="media content-section">
             <div class="media-body">
                 <div class="article-metadata">
-                    <small class="text-muted">{{ post.published }}</small>
+                    {% for topic in post.topic_set.all %}
+                    <small class="text-muted">
+                        <a href="{% url 'topics-list' topic.topic_name %}">{{ topic.topic_name}}</a>
+                    </small>
+                    {% endfor%}
+                    <small class="text-muted ">Ngày đăng: {{ post.published }}</small>
                 </div>
-                <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+                <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
                 <p class="article-content">{{ post.content }}</p>
             </div>
         </article>

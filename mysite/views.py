@@ -1,21 +1,24 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Topic
 
+
+
 def home(request):
     context = {
         'posts': Post.objects.all()
     }
     return render(request, 'site/home.html', context)
 
-def codinglife(request):
+
+def poststopic(request, topic):
     context = {
-        'posts': Post.objects.filter(topic__topic_name__contains='codinglife')
-        
+        'posts': Post.objects.filter(topic__topic_name__contains=topic)
     }
     return render(request, 'site/topiclistview.html', context)
 
-def outdoor(request):
+
+def postdetail(request, pk):
     context = {
-        'posts': Post.objects.filter(topic__topic_name__contains='outdoor')
+        'post': Post.objects.filter(id=pk).first()
     }
-    return render(request, 'site/topiclistview.html', context)
+    return render(request, 'site/post_detail.html', context)

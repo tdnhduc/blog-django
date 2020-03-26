@@ -29,13 +29,16 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
-                         <a class="nav-item nav-link" href="{% url 'site-codinglife' %}">Coding Life</a>
-                        <a class="nav-item nav-link" href="{% url 'site-outdoor' %}">Outdoor</a>  
+                         <a class="nav-item nav-link" href="{% url 'topics-list' 'codinglife' %}">Coding Life</a>
+                        <a class="nav-item nav-link" href="{% url 'topics-list' 'outdoor' %}">Outdoor</a>  
                         <a class="nav-item nav-link" href="#">About</a>
                     </div>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                         <!-- SEARCH BAR -->
+                    </div>
+                    <div class="topnav">
+                        <input type="text" placeholder="Search..">
                     </div>
                 </div>
             </div>
