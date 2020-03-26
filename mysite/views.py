@@ -12,9 +12,9 @@ def home(request):
 
 def poststopic(request, topic):
     context = {
-        'posts': Post.objects.filter(topic__topic_name__contains=topic)
+        'posts': Post.objects.filter(topic__topic_name__contains=topic).order_by('-published')
     }
-    return render(request, 'site/topiclistview.html', context)
+    return render(request, 'site/home.html', context)
 
 
 def postdetail(request, pk):
