@@ -31,7 +31,7 @@
                     <div class="navbar-nav mr-auto">
                          <a class="nav-item nav-link" href="{% url 'topics-list' 'codinglife' %}">Coding Life</a>
                         <a class="nav-item nav-link" href="{% url 'topics-list' 'outdoor' %}">Outdoor</a>  
-                        <a class="nav-item nav-link" href="#">About</a>
+                        <a class="nav-item nav-link" href="{% url 'site-about' %}">About</a>
                     </div>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
@@ -66,6 +66,17 @@
                             <li class="list-group-item list-group-item-light">Calendars</li>
                             <li class="list-group-item list-group-item-light">etc</li>
                         </ul>
+                        <div class='text-muted'>
+                            <form method="POST" class="post-form" action="{% url 'subcribe' %}">
+                                {% csrf_token %}
+                                {{ form }}
+                                <div class="form-group">
+                                    {{ form.as_p }}
+                                    <input class="form-group" type="text" name="email" placeholder="Your email address...">
+                                    <button type="submit">Submit</button>
+                                </div>
+                            </form>
+                        </div>
                     </p>
                 </div>
             </div>
