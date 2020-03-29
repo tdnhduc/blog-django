@@ -5,7 +5,8 @@ __pycache__/
 
 # C extensions
 *.so
-
+#File private
+user_account.py
 # Distribution / packaging
 .vscode/
 .Python
