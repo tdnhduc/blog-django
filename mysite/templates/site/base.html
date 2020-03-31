@@ -33,6 +33,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'navbar/main.css' %}">
+    <!--Fa fa-github-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     {% if title %}
     <title>title</title>
     {% else %}
@@ -51,8 +53,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
-                         <a class="nav-item nav-link" href="{% url 'topics-list' 'codinglife' %}">Coding Life</a>
-                        <a class="nav-item nav-link" href="{% url 'topics-list' 'outdoor' %}">Outdoor</a>  
+                        <a class="nav-item nav-link" href="{% url 'topics-list' 'codinglife' %}">Đời code</a>
+                        <a class="nav-item nav-link" href="{% url 'topics-list' 'outdoor' %}">Ngoài code</a>  
+                        <a class="nav-item nav-link" href="{% url 'topics-list' 'review-dao' %}">Reviews</a>  
+                        <a class="nav-item nav-link" href="{% url 'topics-list' 'linh-tinh' %}">Linh tinh</a>  
                         <a class="nav-item nav-link" href="{% url 'site-about' %}">About</a>
                     </div>
                     <!-- Navbar Right Side -->
@@ -60,7 +64,12 @@
                         <!-- SEARCH BAR -->
                     </div>
                     <div class="topnav">
-                        <input type="text" placeholder="Search..">
+                        <form method="GET" action="{% url 'search' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="text" name="search" placeholder="Search..." maxlength="100" require>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -80,21 +89,30 @@
             </div>
             <div class="col-md-4">
                 <div class="content-section">
-                    <h3>Cho nay show linh tinh</h3>
+                    <h3>Tường</h3>
                     <p class='text-muted'>Show gi o day ta
                         <ul class="list-group">
-                            <li class="list-group-item list-group-item-light">Latest Posts</li>
-                            <li class="list-group-item list-group-item-light">Announcements</li>
-                            <li class="list-group-item list-group-item-light">Calendars</li>
-                            <li class="list-group-item list-group-item-light">etc</li>
+                            <li class="list-group-item list-group-item-light">
+                                <a class="col-md-8" href="#">Latest Posts</a></li>
+                            <li class="list-group-item list-group-item-light">
+                                <a class="col-md-8" href="#">Announcements</a></li>
+                            <li class="list-group-item list-group-item-light">
+                                <a class="col-md-8">Calendars</a></li>
                         </ul>
+                        <div class="group">
+                        
+                        <a class="fa fa-github btn btn-default " style="font-size:34px;color:grey" href="https://github.com/enternity" 
+                                                                                    target="_blank" role="button"></a>
+                        <a class="fa fa-facebook btn btn-default " style="font-size:34px;color:grey" href="https://www.facebook.com/enternity.jr" 
+                                                                                      target="_blank" role="button"></a>
+                        <a class="fa fa-linkedin-square btn btn-default " style="font-size:34px;color:grey" href="https://www.facebook.com/enternity.jr" 
+                                                                                    target="_blank" role="button"></a>
+                        </div>
                         <div class='text-muted'>
                             <form method="POST" class="post-form" action="{% url 'subcribe' %}">
                                 {% csrf_token %}
-                                {{ form }}
                                 <div class="form-group">
-                                    {{ form.as_p }}
-                                    <input class="form-group" type="text" name="email" placeholder="Your email address...">
+                                    <input type="text" name="email" placeholder="Your email address...">
                                     <button type="submit">Follow</button>
                                 </div>
                             </form>
@@ -115,6 +133,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.8.2/marked.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){

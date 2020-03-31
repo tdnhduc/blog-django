@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import JsonResponse
 from blog.settings import EMAIL_HOST_USER
 from django.contrib import messages
 from . import forms
@@ -15,20 +16,24 @@ def home(request):
 def about(request):
     return render(request, 'site/about.html')
 
+
 def poststopic(request, topic):
+    print(topic)
+    from .topic_dict import get_topic
     context = {
-        'posts': Post.objects.filter(topic__topic_name__contains=topic).order_by('-published')
+        # 'posts': Post.objects.filter(topics__topic_name=topic).order_by('-published')
+        'posts': Topic.objects.filter(topic_name=topic).values('post')
     }
     return render(request, 'site/home.html', context)
 
 
 def postdetail(request, pk):
     context = {
-        'post': Post.objects.filter(id=pk).first()
+        'post': Post.objects.get(id=pk)
     }
     return render(request, 'site/post_detail.html', context)
 
-
+    
 def subscribe(request):
     if request.method == 'POST':
         sub = forms.Subscribe(request.POST)
@@ -44,4 +49,11 @@ def subscribe(request):
         messages.error(request, f'Failed')
     storage = messages.get_messages(request)
     storage.used = True
-    return home(request)
+    return redirect(to='site-home')
+
+
+def search(request):
+    if request.method == 'GET':
+        form = forms.Search(request.GET)
+        if form.is_valid():
+            search = form.__getitem__('search')
