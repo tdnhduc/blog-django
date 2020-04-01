@@ -15,5 +15,5 @@ urlpatterns = [
     path('subscribe/', subscribe, name='subcribe'),
     path('topics/<str:topic>/', poststopic, name='topics-list'),
     path('articles/<int:pk>/', postdetail, name='post-detail'),
-    path('search/', search, name='search')
+    path('search/', search, name='search'),
 ]

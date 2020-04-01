@@ -5,16 +5,19 @@
         <article class="media content-section">
             <div class="media-body">
                 <div class="article-metadata">
-                    {% for topic in post.topics %}
-                    <small class="text-muted">
+                    <small class="text-muted">Chủ đề : </small>
+                    {% for topic in post.topics.all %}
+                    <small class="btn btn-light text-muted">
                         <a href="{% url 'topics-list' topic.topic_name %}">{{ topic.topic_name}}</a>
                     </small>
-                    {% endfor%}
-                    <small class="text-muted ">Ngày đăng: {{ post.published }}</small>
+                    {% endfor%} 
                 </div>
                 <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
                 <p class="article-content content-markdown">{{ post.introduce }}</p>
-                <a href="{% url 'post-detail' post.id %}" role="button">Read more</a>
+                <a class="btn btn-info" href="{% url 'post-detail' post.id %}" role="button">Read more</a>
+                <div class="article-metadata">
+                    <small class="text-muted">Ngày đăng: {{ post.published }}</small>
+                </div>
             </div>
         </article>
     {% endfor %} 

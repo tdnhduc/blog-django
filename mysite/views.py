@@ -9,7 +9,7 @@ from .models import Post, Topic, Email
 
 def home(request):
     context = {
-        'posts': Post.objects.all()
+        'posts': Post.objects.all().order_by('-published')
     }
     return render(request, 'site/home.html', context)
 
@@ -17,19 +17,16 @@ def about(request):
     return render(request, 'site/about.html')
 
 
-def poststopic(request, topic):
-    print(topic)
-    from .topic_dict import get_topic
+def poststopic(request, topic='codinglife'):
     context = {
-        # 'posts': Post.objects.filter(topics__topic_name=topic).order_by('-published')
-        'posts': Topic.objects.filter(topic_name=topic).values('post')
+        'posts': Post.objects.filter(topics__topic_name=topic).order_by('-published')
     }
     return render(request, 'site/home.html', context)
 
 
-def postdetail(request, pk):
+def postdetail(request, pk=1):
     context = {
-        'post': Post.objects.get(id=pk)
+        'post': Post.objects.filter(id=pk).first()
     }
     return render(request, 'site/post_detail.html', context)
 
