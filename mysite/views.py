@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import JsonResponse
 from blog.settings import EMAIL_HOST_USER
 from django.contrib import messages
 from . import forms
@@ -8,27 +9,28 @@ from .models import Post, Topic, Email
 
 def home(request):
     context = {
-        'posts': Post.objects.all()
+        'posts': Post.objects.all().order_by('-published')
     }
     return render(request, 'site/home.html', context)
 
 def about(request):
     return render(request, 'site/about.html')
 
-def poststopic(request, topic):
+
+def poststopic(request, topic='codinglife'):
     context = {
-        'posts': Post.objects.filter(topic__topic_name__contains=topic).order_by('-published')
+        'posts': Post.objects.filter(topics__topic_name=topic).order_by('-published')
     }
     return render(request, 'site/home.html', context)
 
 
-def postdetail(request, pk):
+def postdetail(request, pk=1):
     context = {
         'post': Post.objects.filter(id=pk).first()
     }
     return render(request, 'site/post_detail.html', context)
 
-
+    
 def subscribe(request):
     if request.method == 'POST':
         sub = forms.Subscribe(request.POST)
@@ -44,4 +46,12 @@ def subscribe(request):
         messages.error(request, f'Failed')
     storage = messages.get_messages(request)
     storage.used = True
-    return home(request)
+    return redirect(to='site-home')
+
+
+def search(request):
+    # if request.method == 'GET':
+    #     form = forms.Search(request.GET)
+    #     if form.is_valid():
+    #         search = form.__getitem__('search')
+    return render(request, 'site/search.html')
