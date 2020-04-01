@@ -50,7 +50,8 @@ def subscribe(request):
 
 
 def search(request):
-    if request.method == 'GET':
-        form = forms.Search(request.GET)
-        if form.is_valid():
-            search = form.__getitem__('search')
+    # if request.method == 'GET':
+    #     form = forms.Search(request.GET)
+    #     if form.is_valid():
+    #         search = form.__getitem__('search')
+    return render(request, 'site/search.html')
