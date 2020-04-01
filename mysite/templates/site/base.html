@@ -53,11 +53,8 @@
                     </div>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
-                        <!-- SEARCH BAR -->
-                    </div>
-                    <div class="topnav">
                         <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'search'%}">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Need something?..." aria-label="Search">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Tìm cái gì nè?..." aria-label="Search">
                             <button class="btn btn-outline my-2 my-sm-0" type="submit">Search</button>
                         </form>
                     </div>
@@ -102,8 +99,10 @@
                             <form method="POST" class="post-form" action="{% url 'subcribe' %}">
                                 {% csrf_token %}
                                 <div class="form-group">
-                                    <input type="text" name="email" placeholder="Your email address...">
-                                    <button type="submit">Follow</button>
+                                    <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'subcribe'%}">
+                                        <input class="form-control mr-sm-2" name="email" type="search" placeholder="Nhập email nhận thông báo bài mới..." aria-label="Search">
+                                        <button class="btn btn-outline my-2 my-sm-0" type="submit">Follow</button>
+                                    </form>
                                 </div>
                             </form>
                         </div>
