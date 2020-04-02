@@ -30,7 +30,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['alykes.herokuapp.com']
 
 # ALLOWED_HOSTS = ['alykes.herokuapp.com']
-ALLOWED_HOSTS = []
 
 # Application definition
 

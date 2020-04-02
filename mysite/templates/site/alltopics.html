@@ -1,0 +1,14 @@
+{% extends 'site/base.html' %}
+{% block content %}
+    {% for topic in topics %}
+    <article class="media content-section">
+        <div class="media-body">
+            <h3><a class=""></a>
+                <a class="btn btn-outline-info" href="{% url 'topics-list' topic.topic_name %}">{{ topic.topic_name }}</a></h3>
+            <div class="article-metadata">
+                <small class="text-muted">Số bài : {{ topic.post_set.count }}</small>
+            </div>
+        </div>
+    </article>
+    {% endfor %}
+{% endblock content %}

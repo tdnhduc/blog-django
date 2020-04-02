@@ -42,14 +42,14 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
                     aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </button>   
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
                         <a class="nav-item nav-link" href="{% url 'topics-list' 'codinglife' %}">Đời code</a>
                         <a class="nav-item nav-link" href="{% url 'topics-list' 'outdoor' %}">Ngoài code</a>  
                         <a class="nav-item nav-link" href="{% url 'topics-list' 'reviews' %}">Reviews</a>  
                         <a class="nav-item nav-link" href="{% url 'topics-list' 'linhtinh' %}">Linh tinh</a>  
-                        <a class="nav-item nav-link" href="{% url 'site-about' %}">About</a>
+                        <a class="nav-item nav-link" href="{% url 'site-about' %}">About me</a>
                     </div>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
@@ -76,15 +76,15 @@
             </div>
             <div class="col-md-4">
                 <div class="content-section">
-                    <h3>Tường</h3>
-                    <p class='text-muted'>Show gi o day ta
+                    <h3>Bảng tin nhỏ </h3>
+                    <p class='text-muted'>
                         <ul class="list-group">
                             <li class="list-group-item list-group-item-light">
-                                <a class="col-md-8" href="#">Latest Posts</a></li>
+                                <a class="col-md-8" href="{% url 'all-topics' %}">Tất cả chủ đề</a></li>
                             <li class="list-group-item list-group-item-light">
-                                <a class="col-md-8" href="#">Announcements</a></li>
+                                <a class="col-md-8" href="{% url 'kind-posts' 'BH'%}">Bài viết hay</a></li>
                             <li class="list-group-item list-group-item-light">
-                                <a class="col-md-8">Calendars</a></li>
+                                <a class="col-md-8">Random bài viết</a></li>
                         </ul>
                         <div class="group">
                         

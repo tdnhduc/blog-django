@@ -55,3 +55,17 @@ def search(request):
     #     if form.is_valid():
     #         search = form.__getitem__('search')
     return render(request, 'site/search.html')
+
+
+def alltopic (request):
+    context = {
+        'topics': Topic.objects.all()
+    }
+    return render(request, 'site/alltopics.html', context)
+
+
+def kindposts(request, kind):
+    context = {
+        'posts': Post.objects.filter(kind_post=kind).order_by('-published')
+    }
+    return render(request, 'site/home.html', context)

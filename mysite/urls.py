@@ -6,6 +6,8 @@ from .views import (
     about,
     subscribe,
     search,
+    alltopic,
+    kindposts,
 )
 
 
@@ -16,4 +18,6 @@ urlpatterns = [
     path('topics/<str:topic>/', poststopic, name='topics-list'),
     path('articles/<int:pk>/', postdetail, name='post-detail'),
     path('search/', search, name='search'),
+    path('alltopic/', alltopic, name='all-topics'),
+    path('kindposts/<str:kind>/', kindposts, name='kind-posts'),
 ]

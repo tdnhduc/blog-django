@@ -17,6 +17,11 @@
                 <a class="btn btn-info" href="{% url 'post-detail' post.id %}" role="button">Read more</a>
                 <div class="article-metadata">
                     <small class="text-muted">Ngày đăng: {{ post.published }}</small>
+                    {% if  post.kind_post != 'BT' %}
+                        <small class="text-muted" > 
+                            Thể loại:<a href="{% url 'kind-posts' post.kind_post %}">{{post.get_kind_post_display}}</a> 
+                        </small>
+                    {% endif %}
                 </div>
             </div>
         </article>
